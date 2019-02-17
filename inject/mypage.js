@@ -1151,7 +1151,8 @@ $(function(){
 								str = "+" + (baseNum + powWeight * skillLevel) + "%";
 								str1 = "+" + (baseNum + powWeight * skillLevel) + "%";
 								mainStr = "ATK" + str;
-								mainStr1 = "HP" + str1;								
+								mainStr1 = "HP" + str1;	
+								break;
 							//HP&恢复性能
 							case "grace":
 								//HP
