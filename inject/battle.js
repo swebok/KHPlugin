@@ -48,9 +48,9 @@ $(function(){
 
 		var centerPanel = w.battleUI.CenterPanel;
 		if (centerPanel._visibleButton == centerPanel.BUTTONS.ATTACK && w.battleUI.AttackButton._widget.isEnabled()) {
-			w.battleUI.AutoButton._onTouchEvent(w.battleUI.AutoButton._widget, 2);
+			
 			if (settings.autoUseSkill) {
-				w.battleUI.AutoButton._onTouchEvent(w.battleUI.AutoButton._widget, 2);
+					w.battleUI.AutoButton._onTouchEvent(w.battleUI.AutoButton._widget, 2);
 			}
 			w.battleUI.AutoButton._onTouchEvent(w.battleUI.AutoButton._widget, 2);
 			w.battleUI.AttackButton.simulateAttack();
