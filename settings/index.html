@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title id="title">神姬project</title>
+        
+        <!-- Stylesheets -->
+        <link id="favicon" rel="icon" href="../icon/icon-64.png">
+        <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css" media="screen">
+        <link rel="stylesheet" href="css/main.css" media="screen">
+        <!-- JavaScripts -->
+        <script src="lib/jquery-3.1.0.min.js"></script>
+        <script src="lib/bootstrap.min.js"></script>
+        <script src="lib/blowfish.js"></script>
+        <script src="js/main.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div id="sidebar" class="col-sm-3 col-md-2 sidebar">
+                    <div id="sidebar-title">
+                    <img id="icon" src="../icon/icon-64.png" alt="七海小天使"><h1 id="settings-label">设置</h1>
+                    </div>
+                    <ul id="menu" class="nav nav-sidebar" role="tablist">
+                         <li role="presentation"  class="active"><a href="#combatTab" aria-controls="combatTab" role="tab" data-toggle="tab">战斗</a></li>
+                          <li role="presentation"><a href="#unpackTab" aria-controls="unpackTab" role="tab" data-toggle="tab">拆图</a></li>
+                    </ul>
+                </div>
+                <div id="content" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="combatTab">
+                        <h1 class="page-header">战斗</h1>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-1">
+                                <input type="checkbox" id="enableHotkey">启用快捷键</input>
+                            </div>
+							<div class="col-md-8 col-md-offset-1">
+                                <input type="checkbox" id="autoStartBattle">自动开始战斗</input>
+                            </div>
+                            <div class="col-md-8 col-md-offset-1">
+                                <input type="checkbox" id="autoUseSkill">自动使用技能</input>
+                            </div>
+                            
+                            <div class="col-md-8 col-md-offset-1">
+                                <p>
+                                    注: 页面需要获得焦点才能响应键盘事件<br/><br/>
+                                    <strong>1/2/3/4/5</strong> 选择角色<br/>
+                                    <strong>上/下</strong> 切换角色<br/>
+                                    <strong>esc</strong> 关闭幻兽或角色面板<br/>
+                                    <strong>f/g</strong> 切换目标<br/>
+                                    <strong>q/w/e/r</strong> 使用角色技能<br/>
+                                    <strong>6</strong> 呼出幻兽面板<br/>
+                                    <strong>q/w/e/r/t/y/u</strong> 使用幻兽<br/>
+                                    <strong>空格</strong> 攻击<br/>
+                                    <strong>a</strong> 打开治疗窗口<br/>
+                                    <strong>s</strong> 切换burst<br/>
+                                    <strong>d</strong> 切换自动攻击<br/>
+									<strong>z</strong> 重新加载窗口<br/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="unpackTab">
+                        <h1 class="page-header">拆图</h1>
+                        <div class="row">
+                            <p style="margin-left:25px">
+                                神姬ssr:50xx  sr:60xx  r:70xx<br>
+                                英灵:00xx 幻兽:50xx 60xx 70xx<br>
+                                抽卡:目前1216暗活动<br>
+                                首页图 mypage_chara_$_0<br>
+                                英灵 mypage_job_$_0<br>
+                                抽卡页 gachatop_slider_$<br>
+                                首页底边活动 eventimg_banner_$<br>
+                                幻兽 introduceimg_summon_$_0<br>
+                                预告 conquest-bg000_event_$ (1021) raid-bg006_event_$ (2021)
+                            </p>
+                            <div class="col-md-7" style="margin-top:20px;margin-left:10px">
+                                <div class="input-group">
+                                      <label class="input-group-addon" id="basic-addon1">图片编码:</label>
+                                    <input id="picAddr" type="text" class="form-control" placeholder="..."></input>
+                                </div>
+                            </div>
+
+                            <div class="col-md-7" style="margin-top:20px;margin-left:10px">
+                                <div class="input-group">
+                                      <label class="input-group-addon" id="basic-addon1">图片地址:</label>
+                                    <input id="picOriAddr" type="text" class="form-control" placeholder="..."></input>
+                                </div>
+                            </div>
+                             <div class="col-md-12" style="margin-top:10px">
+                                <button id="transPackBtn" class="btn btn-default col-md-offset-4">转换地址</button>
+                               <button id="transPicCodeBtn" class="btn btn-default">反解编码</button>
+                            </div>
+                            <div class="col-md-7" style="margin-top:10px;margin-left:10px">
+                                <div class="input-group">
+                                    <label class="input-group-addon" id="basic-addon1">模式:</label>
+                                    <input id="patternPicAddr" type="text" class="form-control" placeholder="比如mypage_chara_$_0"></input>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-left:10px">
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <label class="input-group-addon">编码:</label>
+                                            <input id="minPicCode" type="text" class="form-control"  placeholder="5020"></input>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="maxPicCode">5022</label>
+                                        <input id="maxPicCode" type="text" class="form-control" placeholder="5022"></input>
+                                    </div>
+                                    <div class="form-group">
+                                        <button id="searchPic" class="btn btn-default col-md-offset-4">搜索图片</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="imageCon" class="col-md-12">
+                            </div>
+                            <div class="col-md-12">
+                                &nbsp;
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

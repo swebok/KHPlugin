@@ -1,0 +1,28 @@
+{
+   "background": {
+      "page": "bg/background.html",
+      "persistent": true
+   },
+   "browser_action": {
+      "default_icon": "icon/icon-64.png",
+      "default_title": "神姬project public"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "jquery.js", "sjp.js" ],
+      "matches": [ "http://www.dmm.co.jp/netgame/social/-/gadgets/=/app_id=242584*", "*://*.kamihimeproject.net/*", "http://osapi.dmm.com/gadgets/ifr*.kamihimeproject.net*" ]
+   } ],
+   "description": "神姬project public",
+   "icons": {
+      "128": "icon/icon-128.png",
+      "16": "icon/icon-16.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA/NbkhFn7x2RLlrMZX/bfXgma877sW7IlcMLnSIm0SV583+JD3CTKj+zXGa111nnFkOrkHz54xzxXwbZ8raJ8LksYmZc2Iy1YqhJyDEaH4b032DXk/JyYKQLlxvjNIf3vJ3iYozk8Miw5tihEmqJb/sVQvv5zSOgXdUok9dVPySWrvyMJZM2O3l0ai89bwXvmouETOIGKbyGQjTXRoK/Ywzjb+tvjXHDSB/u556l/BOYM5fps43xbt8fec5o/QM3BQ3Wvdcs/vl5taUEUNaMhr78U7qXeUJZDhaDUAseKD6j1/wUSGQM1Grfg0IDf19pcXitW5PwwaZ0NxbktxniyLwIDAQAB",
+   "manifest_version": 2,
+   "name": "神姬project public",
+   "options_page": "settings/index.html",
+   "permissions": [ "management", "*://*/*", "notifications", "webRequest", "tabs", "alarms", "activeTab", "declarativeContent", "storage", "*://*.kamihimeproject.net/*" ],
+   "short_name": "sjpp",
+   "version": "0.0.18.6",
+   "web_accessible_resources": [ "jquery.js", "inject/*", "icon/*", "settings/*", "img/*" ]
+}
