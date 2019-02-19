@@ -100,7 +100,8 @@ $(function(){
 			//武器
 			10001: "剑",
 			10002: "特殊剑",
-			10003: "枪"
+			10003: "枪",
+			10004: "斧"
 		};
 		
 		//神姬类型定义
@@ -266,6 +267,10 @@ $(function(){
 				type: "大"
 			},
 			//武器强化（暂时占用10001~10009元素）
+			"ブレイド": {
+				element: "10001",
+				type: "ブレイド"
+			},
 			"リッパー": {
 				element: "10002",
 				type: "リッパー"
@@ -273,6 +278,10 @@ $(function(){
 			"サリッサ": {
 				element: "10003",
 				type: "サリッサ"
+			},
+			"アックス": {
+				element: "10004",
+				type: "アックス"
 			}
 		};
 		
@@ -368,18 +377,37 @@ $(function(){
 				"中": [2, 0.1, 7, 1, 12, 0.2],
 				"大": [3, 0.1, 10, 1, 16, 0.2]
 			},
+			//属性のキャラの連続攻撃確率UP
+			"アバランシェ": {
+				"小": [0, 0.05, 0, 0.05],
+				"中": [0, 0.15, 0, 0.1],
+				"大": [0, 0.25, 0, 0.15],
+				"ブレイド": []	//幻剑
+			},
 			//属性のキャラの攻撃力と三段攻撃確率UP
 			"トライエッジ": {
 				"リッパー": [6, 0.5, 0, 0.15]	//幻特殊剑
 			},
 			//属性のキャラのHPと攻撃力UP
 			"ストレングス": {
+				"小": [0, 0.5],
+				"中": [3, 0.5],
+				"大": [6, 0.5],
 				"サリッサ": [6, 0.5]	//幻枪
+			},
+			//属性のキャラのアビリティとバースト性能UP
+			"タクティクス": {
+				"小": [10, 1, 2, 10, 1, 0, 1],
+				"中": [10, 1, 3.5, 25, 1, 10, 1],
+				"大": [10, 1, 5, 40, 1, 20, 1],
+				"アックス": [10, 1, 5, 40, 1, 20, 1]	//幻斧
 			},
 			//装備中の「XXX」の攻撃・HPステータスUP
 			"エンハンス": {
+				"ブレイド": [30, 45],
 				"リッパー": [30, 45],
-				"サリッサ": [30, 45]
+				"サリッサ": [30, 45],
+				"アックス": [30, 45]
 			}
 		};
 		
@@ -711,7 +739,7 @@ $(function(){
 									//某些武器技能对应属性和武器本身不同
 									//但英灵武器虽然对应不同属性但技能名一样，不能通过技能名判断属性
 									var element_type = -1;
-									var type;
+									var x;
 									for (var key in WEAPON_SKILL_MAP_PREF) {
 										if (sk.name.indexOf(key) == 0) {
 											element_type = WEAPON_SKILL_MAP_PREF[key].element;
@@ -872,6 +900,15 @@ $(function(){
 													var powWeight = valueArray[5];
 													calItem.vigorousMax += baseNum+skillLevel*powWeight-Math.pow((baseNum+skillLevel*powWeight), 0.5);
 													break;
+												//二连&三连
+												case "アバランシェ":
+													var baseNum = valueArray[0];
+													var powWeight = valueArray[1];
+													calItem.rush += baseNum + powWeight * skillLevel;
+													baseNum = valueArray[2];
+													powWeight = valueArray[3];
+													calItem.barrage += baseNum + powWeight * skillLevel;
+													break;
 												//攻刃&三连
 												case "トライエッジ":
 													var baseNum = valueArray[0];
@@ -889,6 +926,20 @@ $(function(){
 													calItem.assaultBase += baseNum + powWeight * skillLevel;
 													calItem.assaultMax += baseNum + powWeight * skillLevel;
 													calItem.defender += baseNum + powWeight * skillLevel;
+													break;
+												//技能性能&爆裂性能
+												case "タクティクス":
+													var baseNum = valueArray[0];
+													var powWeight = valueArray[1];
+													var upperLimit = valueArray[2];
+													calItem.elaborateDamage += baseNum + powWeight * skillLevel;
+													calItem.elaborateUpperLimit += upperLimit;
+													var baseNumDamage = valueArray[3];
+													var powWeightDamage = valueArray[4];
+													var baseNumUpperLimit = valueArray[5];
+													var powWeightUpperLimit = valueArray[6];
+													calItem.exceedDamage += baseNumDamage + powWeightDamage * skillLevel;
+													calItem.exceedUpperLimit += baseNumUpperLimit + powWeightUpperLimit * skillLevel;
 													break;
 												//武器强化
 												case "エンハンス":
@@ -1625,8 +1676,8 @@ $(function(){
 				var actWeaponArr = weaponArr.splice(0,3);
 				if (actTargetWeaponArr.length>0 && actWeaponArr.length==3) {
 					kh.createInstance("apiAWeapons").enhance(actTargetWeaponArr[0], actWeaponArr[0]).then(function(e) {
-						mypageLog("SR武器强化lv1->lv2完毕");
-						batchEnhanceSRWeapon2(targetWeaponArr, weaponArr);
+						mypageLog("SR武器强化lv1->lv3完毕");
+						batchEnhanceSRWeapon3(targetWeaponArr, weaponArr);
 					}).fail(playFailHandler);
 				}else{
 					//执行完毕
