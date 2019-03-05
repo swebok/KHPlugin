@@ -10,7 +10,8 @@ function injectCode(script){
 }
 
 if(window.location.toString().indexOf("http://www.dmm.co.jp/netgame/social/-/gadgets/=/app_id=242584")>-1
-	||window.location.toString().indexOf("http://www.dmm.com/netgame/social/-/gadgets/=/app_id=753201")>-1){
+	||window.location.toString().indexOf("http://www.dmm.com/netgame/social/-/gadgets/=/app_id=753201")>-1
+	||window.location.toString().indexOf("http://pc-play.games.dmm.co.jp/play/kamipro_X_Gro")>-1){
 //	window.location = $("#app_frame").attr("src");
 	// $(function(){
 	// 	$("#game_frame").height(1240);
@@ -65,7 +66,8 @@ if(window.location.toString().indexOf("http://www.dmm.co.jp/netgame/social/-/gad
 	    });
 
 	});
-}else if(window.location.toString().indexOf(".kamihimeproject.net")>-1 && window.location.toString().indexOf("/tyrano.html")==-1){
+}else if((window.location.toString().indexOf(".kamihimeproject.net")>-1 && window.location.toString().indexOf("/tyrano.html")==-1) ||
+		(window.location.toString().indexOf(".skh.dmmgames.com")>-1 && window.location.toString().indexOf("/tyrano.html")==-1)){
 	console.log(window.location.toString());
 	var obj = window.kh;
 	$(function(){

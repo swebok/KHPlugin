@@ -10,7 +10,7 @@
    "content_scripts": [ {
       "all_frames": true,
       "js": [ "jquery.js", "sjp.js" ],
-      "matches": [ "http://www.dmm.co.jp/netgame/social/-/gadgets/=/app_id=242584*", "*://*.kamihimeproject.net/*", "http://osapi.dmm.com/gadgets/ifr*.kamihimeproject.net*" ]
+      "matches": [ "http://www.dmm.co.jp/netgame/social/-/gadgets/=/app_id=242584*", "*://*.kamihimeproject.net/*", "http://osapi.dmm.com/gadgets/ifr*.kamihimeproject.net*", "http://pc-play.games.dmm.co.jp/play/kamipro_X_Gro*", "*://*.skh.dmmgames.com/*", "http://osapi.dmm.com/gadgets/ifr*.skh.dmmgames.com*" ]
    } ],
    "description": "神姬project public",
    "icons": {
