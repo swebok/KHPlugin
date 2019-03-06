@@ -95,13 +95,18 @@ $(function(){
 			3: "雷",
 			5: "光",
 			4: "暗",
-			8: "全",	//幻
+			8: "幻",
 			//---以下类型为自定义---
 			//武器
 			10001: "剑",
 			10002: "特殊剑",
 			10003: "枪",
-			10004: "斧"
+			10004: "斧",
+			10005: "杖",
+			10006: "锤",
+			10007: "铳",
+			10008: "弓",
+			10009: "魔导具"
 		};
 		
 		//神姬类型定义
@@ -199,7 +204,7 @@ $(function(){
 			},
 			"グラシエイト": {
 				element: "1",
-				type: "大"
+				type: "特大"
 			},
 			//风
 			"エアロ": {
@@ -282,6 +287,26 @@ $(function(){
 			"アックス": {
 				element: "10004",
 				type: "アックス"
+			},
+			"スタッフ": {
+				element: "10005",
+				type: "スタッフ"
+			},
+			"マレット": {
+				element: "10006",
+				type: "マレット"
+			},
+			"キャノン": {
+				element: "10007",
+				type: "キャノン"
+			},
+			"クォレル": {
+				element: "10008",
+				type: "クォレル"
+			},
+			"チャリス": {
+				element: "10009",
+				type: "チャリス"
 			}
 		};
 		
@@ -357,13 +382,15 @@ $(function(){
 			"ランパート": {
 				"小": [0, 0.5, 8, 0.2],
 				"中": [3, 0.5, 12, 0.2],
-				"大": [6, 0.5, 16, 0.2]
+				"大": [6, 0.5, 16, 0.2],
+				"チャリス": [6, 0.5, 16, 0.2]	//幻魔导具
 			},
 			//属性キャラクターのHPと回復性能UP	光小275
 			"グレイス": {
 				"小": [0, 0.5, 1, 0.1, 4, 1],
 				"中": [3, 0.5, 2, 0.1, 7, 1],
-				"大": [6, 0.5, 3, 0.1, 10, 1]
+				"大": [6, 0.5, 3, 0.1, 10, 1],
+				"スタッフ": [6, 0.5, 3, 0.1, 10, 1]	//幻杖
 			},
 			//属性キャラクターのHPUP/HPが少ないほど攻撃UP   风小283
 			"ストウォート": {
@@ -382,7 +409,7 @@ $(function(){
 				"小": [0, 0.05, 0, 0.05],
 				"中": [0, 0.15, 0, 0.1],
 				"大": [0, 0.25, 0, 0.15],
-				"ブレイド": []	//幻剑
+				"ブレイド": [0, 0.25, 0, 0.15]	//幻剑
 			},
 			//属性のキャラの攻撃力と三段攻撃確率UP
 			"トライエッジ": {
@@ -402,12 +429,30 @@ $(function(){
 				"大": [10, 1, 5, 40, 1, 20, 1],
 				"アックス": [10, 1, 5, 40, 1, 20, 1]	//幻斧
 			},
+			//属性のキャラの攻撃力UP(極大)
+			"カーネイジ": {
+				"マレット": [10, 1]	//幻锤
+			},
+			//属性のキャラのHPUP(極大)
+			"プロテクト": {
+				"キャノン": [10, 1]	//幻铳
+			},
+			//属性のキャラの攻撃力と急所攻撃確率UP
+			"スラッグ": {
+				"大": [6, 0.5],
+				"スラッグ": [6, 0.5]	//幻弓
+			},
 			//装備中の「XXX」の攻撃・HPステータスUP
 			"エンハンス": {
 				"ブレイド": [30, 45],
 				"リッパー": [30, 45],
 				"サリッサ": [30, 45],
-				"アックス": [30, 45]
+				"アックス": [30, 45],
+				"スタッフ": [30, 45],
+				"マレット": [30, 45],
+				"キャノン": [30, 45],
+				"クォレル": [30, 45],
+				"チャリス": [30, 45]
 			}
 		};
 		
@@ -688,8 +733,8 @@ $(function(){
 		function createExtraBtns() {
 			createEnhanceRWeaponBtn();
 			createSellSRSumDogFoodBtn();
-			createRaidTicketBtn();
-			createStopRaidTicketBtn();
+			//createRaidTicketBtn();
+			//createStopRaidTicketBtn();
 		};
 		/////////////////////////////////////////////////////////////////////////////////////////////////
 		//全局变量定义
@@ -940,6 +985,27 @@ $(function(){
 													var powWeightUpperLimit = valueArray[6];
 													calItem.exceedDamage += baseNumDamage + powWeightDamage * skillLevel;
 													calItem.exceedUpperLimit += baseNumUpperLimit + powWeightUpperLimit * skillLevel;
+													break;
+												//攻刃（极大）
+												case "カーネイジ":
+													var baseNum = valueArray[0];
+													var powWeight = valueArray[1];
+													calItem.assaultBase += baseNum + powWeight * skillLevel;
+													calItem.assaultMax += baseNum + powWeight * skillLevel;
+													break;
+												//血刃（极大）
+												case "プロテクト":
+													var baseNum = valueArray[0];
+													var powWeight = valueArray[1];
+													calItem.defender += baseNum + powWeight * skillLevel;
+													break;
+												//攻刃&急所
+												case "スラッグ":
+													var baseNum = valueArray[0];
+													var powWeight = valueArray[1];
+													calItem.assaultBase += baseNum + powWeight * skillLevel;
+													calItem.assaultMax += baseNum + powWeight * skillLevel;
+													calItem.stinger += 0.2 * (baseNum + powWeight * skillLevel);
 													break;
 												//武器强化
 												case "エンハンス":
