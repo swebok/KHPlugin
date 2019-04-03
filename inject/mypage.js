@@ -1458,7 +1458,7 @@ $(function(){
 					json: {
 						//selectable_base_filter: "sellable",
 						page: 1,
-						per_page: 500
+						per_page: 600
 					}
 				}).then(function(e){
 					var data = e.body.data;
@@ -1506,7 +1506,7 @@ $(function(){
 					json: {
 						//selectable_base_filter: "sellable",
 						page: 1,
-						per_page: 500
+						per_page: 600
 					}
 				}).then(function(e){
 					var data = e.body.data;
@@ -1559,7 +1559,7 @@ $(function(){
 					json: {
 						//selectable_base_filter: "sellable",
 						page: 1,
-						per_page: 500
+						per_page: 600
 					}
 				}).then(function(e){
 					var data = e.body.data;
@@ -1612,7 +1612,7 @@ $(function(){
 					json: {
 						//selectable_base_filter: "sellable",
 						page: 1,
-						per_page: 500
+						per_page: 600
 					}
 				}).then(function(e){
 					var data = e.body.data;
@@ -1665,7 +1665,7 @@ $(function(){
 					json: {
 						//selectable_base_filter: "sellable",
 						page: 1,
-						per_page: 500
+						per_page: 600
 					}
 				}).then(function(e){
 					var data = e.body.data;
@@ -1718,7 +1718,7 @@ $(function(){
 					json: {
 						//selectable_base_filter: "sellable",
 						page: 1,
-						per_page: 500
+						per_page: 600
 					}
 				}).then(function(e){
 					var data = e.body.data;
@@ -1771,7 +1771,7 @@ $(function(){
 					json: {
 						//selectable_base_filter: "sellable",
 						page: 1,
-						per_page: 500
+						per_page: 600
 					}
 				}).then(function(e){
 					var data = e.body.data;
@@ -1824,7 +1824,7 @@ $(function(){
 					json: {
 						//selectable_base_filter: "sellable",
 						page: 1,
-						per_page: 500
+						per_page: 600
 					}
 				}).then(function(e){
 					var data = e.body.data;
@@ -2503,31 +2503,8 @@ $(function(){
 		function showInfo() {
 			emptyLog();
 			mypageLog("修改：swebok");
-			mypageLog("更新日期：2019/1/3");
+			mypageLog("更新日期：2019/4/3");
 			mypageLog("暗号：535942143，想入工会的进");
-			mypageLog("更新日志：");
-			mypageLog("1/3：狗粮喂法增加");
-			mypageLog("10/7：狗粮喂法变更；攻刃显示问题以后再改");
-			mypageLog("7/27：增加了计算攻刃的内容，包含部分幻武；");
-			mypageLog("金币功能不打算修正了。");
-			mypageLog("0.0.18.4：金币功能修正；");
-			mypageLog("商店日常交换改为周常交换；");
-			mypageLog("首饰剩余经验计算功能；");
-			mypageLog("首饰提供经验计算功能；");
-			mypageLog("武器强化功能修正；");
-			mypageLog("增加和修改了随机出现的图片。");
-			mypageLog("0.0.18.3：战斗界面刷新快捷键：z；");
-			mypageLog("商店自动交换修正；");
-			mypageLog("特殊分类（非常用功能）：增加R武器强化到lv2功能（未经测试）；");
-			mypageLog("0.0.18.2：计算攻刃更新背水中小；");
-			mypageLog("自动强化无视已装备武器。")
-			mypageLog("0.0.18.1：增加领日常奖励功能；");
-			mypageLog("日常兑换更新；");
-			mypageLog("修正卖出N首饰错误。");
-			mypageLog("0.0.18.0：UI全面更新；");
-			mypageLog("增加队伍状态检查、卖N首饰、日常兑换、自动战斗功能；");
-			mypageLog("计算攻刃更新；");
-			mypageLog("随机出现的图片数量由3种增加到14种，并不再需要修改插件ID。");
 		};
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////
