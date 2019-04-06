@@ -313,6 +313,48 @@ $(function(){
 				type: "チャリス"
 			}
 		};
+		//繁中用前缀属性复制
+		WEAPON_SKILL_MAP_PREF["雷之"] = WEAPON_SKILL_MAP_PREF["サンダー"];	//雷小
+		WEAPON_SKILL_MAP_PREF["奔雷"] = WEAPON_SKILL_MAP_PREF["プラズマ"];	//雷中
+		WEAPON_SKILL_MAP_PREF["雷霆"] = WEAPON_SKILL_MAP_PREF["インパルス"];//雷大
+		WEAPON_SKILL_MAP_PREF["閃電"] = WEAPON_SKILL_MAP_PREF["サンダー"];	//雷小
+		WEAPON_SKILL_MAP_PREF["電子"] = WEAPON_SKILL_MAP_PREF["プラズマ"];	//雷中
+		WEAPON_SKILL_MAP_PREF["雷擊"] = WEAPON_SKILL_MAP_PREF["インパルス"];//雷大
+		
+		WEAPON_SKILL_MAP_PREF["火之"] = WEAPON_SKILL_MAP_PREF["ファイヤ"];	//火小
+		WEAPON_SKILL_MAP_PREF["火焰"] = WEAPON_SKILL_MAP_PREF["バーニング"];	//火中
+		WEAPON_SKILL_MAP_PREF["烈焰"] = WEAPON_SKILL_MAP_PREF["インフェルノ"];//火大
+		WEAPON_SKILL_MAP_PREF["火焰"] = WEAPON_SKILL_MAP_PREF["ファイヤ"];	//火小
+		WEAPON_SKILL_MAP_PREF["烈火"] = WEAPON_SKILL_MAP_PREF["バーニング"];	//火中
+		WEAPON_SKILL_MAP_PREF["業火"] = WEAPON_SKILL_MAP_PREF["インフェルノ"];//火大
+		
+		WEAPON_SKILL_MAP_PREF["水之"] = WEAPON_SKILL_MAP_PREF["アクア"];	//水小
+		WEAPON_SKILL_MAP_PREF["冰晶"] = WEAPON_SKILL_MAP_PREF["ブリザード"];	//水中
+		WEAPON_SKILL_MAP_PREF["寒冰"] = WEAPON_SKILL_MAP_PREF["コキュートス"];//水大
+		WEAPON_SKILL_MAP_PREF["深海"] = WEAPON_SKILL_MAP_PREF["アクア"];	//水小
+		WEAPON_SKILL_MAP_PREF["極地"] = WEAPON_SKILL_MAP_PREF["ブリザード"];	//水中
+		WEAPON_SKILL_MAP_PREF["冥河"] = WEAPON_SKILL_MAP_PREF["コキュートス"];//水大
+		
+		WEAPON_SKILL_MAP_PREF["風之"] = WEAPON_SKILL_MAP_PREF["エアロ"];	//风小
+		WEAPON_SKILL_MAP_PREF["疾風"] = WEAPON_SKILL_MAP_PREF["ストーム"];	//风中
+		WEAPON_SKILL_MAP_PREF["翠風"] = WEAPON_SKILL_MAP_PREF["タービランス"];//风大
+		WEAPON_SKILL_MAP_PREF["大氣"] = WEAPON_SKILL_MAP_PREF["エアロ"];	//风小
+		WEAPON_SKILL_MAP_PREF["龍捲"] = WEAPON_SKILL_MAP_PREF["ストーム"];	//风中
+		WEAPON_SKILL_MAP_PREF["亂流"] = WEAPON_SKILL_MAP_PREF["タービランス"];//风大
+		
+		WEAPON_SKILL_MAP_PREF["光之"] = WEAPON_SKILL_MAP_PREF["レイ"];	//光小
+		WEAPON_SKILL_MAP_PREF["神聖"] = WEAPON_SKILL_MAP_PREF["シャイン"];	//光中
+		WEAPON_SKILL_MAP_PREF["聖光"] = WEAPON_SKILL_MAP_PREF["ルミナ"];//光大
+		WEAPON_SKILL_MAP_PREF["光芒"] = WEAPON_SKILL_MAP_PREF["レイ"];	//光小
+		WEAPON_SKILL_MAP_PREF["耀光"] = WEAPON_SKILL_MAP_PREF["シャイン"];	//光中
+		WEAPON_SKILL_MAP_PREF["星光"] = WEAPON_SKILL_MAP_PREF["ルミナ"];//光大
+		
+		WEAPON_SKILL_MAP_PREF["闇之"] = WEAPON_SKILL_MAP_PREF["ダーク"];	//暗小
+		WEAPON_SKILL_MAP_PREF["暗影"] = WEAPON_SKILL_MAP_PREF["アビス"];	//暗中
+		WEAPON_SKILL_MAP_PREF["暗黑"] = WEAPON_SKILL_MAP_PREF["シュバルツ"];//暗大
+		WEAPON_SKILL_MAP_PREF["漆黑"] = WEAPON_SKILL_MAP_PREF["ダーク"];	//暗小
+		WEAPON_SKILL_MAP_PREF["深淵"] = WEAPON_SKILL_MAP_PREF["アビス"];	//暗中
+		WEAPON_SKILL_MAP_PREF["闇黑"] = WEAPON_SKILL_MAP_PREF["シュバルツ"];//暗大
 		
 		//武器技能后缀定义（根据技能名称分析【类型，基础值，等级增益】未有明确数据的，等级增益设为0）
 		var WEAPON_SKILL_MAP_SUF = {
@@ -389,6 +431,12 @@ $(function(){
 				"大": [6, 0.5, 16, 0.2],
 				"チャリス": [6, 0.5, 16, 0.2]	//幻魔导具
 			},
+			//属性キャラクターの攻撃力と回復性能UP			火小241
+			"レジリエンス": {
+				"小": [0, 0.5, 1, 0.1, 4, 1],
+				"中": [3, 0.5, 2, 0.1, 7, 1],
+				"大": [6, 0.5, 3, 0.1, 10, 1]
+			},
 			//属性キャラクターのHPと回復性能UP	光小275
 			"グレイス": {
 				"小": [0, 0.5, 1, 0.1, 4, 1],
@@ -460,6 +508,22 @@ $(function(){
 			}
 		};
 		
+		//繁中用后缀属性复制
+		WEAPON_SKILL_MAP_SUF["加持"] = WEAPON_SKILL_MAP_SUF["アサルト"];	//攻刃
+		WEAPON_SKILL_MAP_SUF["強襲"] = WEAPON_SKILL_MAP_SUF["アサルト"];	//攻刃
+		WEAPON_SKILL_MAP_SUF["守護"] = WEAPON_SKILL_MAP_SUF["ディフェンダー"];	//血刃
+		WEAPON_SKILL_MAP_SUF["抵抗"] = WEAPON_SKILL_MAP_SUF["ディフェンダー"];	//血刃
+		WEAPON_SKILL_MAP_SUF["防禦"] = WEAPON_SKILL_MAP_SUF["ディフェンダー"];	//血刃
+		WEAPON_SKILL_MAP_SUF["志氣"] = WEAPON_SKILL_MAP_SUF["プライド"];	//背水
+		WEAPON_SKILL_MAP_SUF["志氣"]["小"] = WEAPON_SKILL_MAP_SUF["志氣"]["大"];	//针对特殊词缀背水大的修改
+		WEAPON_SKILL_MAP_SUF["驕傲"] = WEAPON_SKILL_MAP_SUF["プライド"];	//背水
+		WEAPON_SKILL_MAP_SUF["突進"] = WEAPON_SKILL_MAP_SUF["ラッシュ"];	//二连
+		WEAPON_SKILL_MAP_SUF["連擊"] = WEAPON_SKILL_MAP_SUF["バレッジ"];	//三连
+		WEAPON_SKILL_MAP_SUF["刺殺"] = WEAPON_SKILL_MAP_SUF["スティンガー"];	//急所
+		WEAPON_SKILL_MAP_SUF["突破"] = WEAPON_SKILL_MAP_SUF["エクシード"];	//爆裂
+		WEAPON_SKILL_MAP_SUF["躍升"] = WEAPON_SKILL_MAP_SUF["アセンション"];	//恢复
+		WEAPON_SKILL_MAP_SUF["強健"] = WEAPON_SKILL_MAP_SUF["ヴィゴラス"];	//旺盛
+																		 
 		//ウェポンスキルのレベルアップに必要な経験値（累計）
 		var WEAPON_SKILL_ENHANCE_EXP_TOTAL = {
 			"R": [
@@ -789,12 +853,17 @@ $(function(){
 									//但英灵武器虽然对应不同属性但技能名一样，不能通过技能名判断属性
 									var element_type = -1;
 									var x;
+									var type = null;
 									for (var key in WEAPON_SKILL_MAP_PREF) {
 										if (sk.name.indexOf(key) == 0) {
 											element_type = WEAPON_SKILL_MAP_PREF[key].element;
 											type = WEAPON_SKILL_MAP_PREF[key].type;
 											break;
 										}
+									}
+									//若不存在该类型，跳过
+									if (type == null) {
+										continue;
 									}
 									//例外：是否为英灵武
 									
@@ -838,6 +907,8 @@ $(function(){
 											switch(sufix) {
 												//攻刃
 												case "アサルト":
+												case "加持":
+												case "強襲":
 													var baseNum = valueArray[0];
 													var powWeight = valueArray[1];
 													calItem.assaultBase += baseNum + powWeight * skillLevel;
@@ -845,12 +916,17 @@ $(function(){
 													break;
 												//血刃
 												case "ディフェンダー":
+												case "守護":
+												case "防禦":
+												case "抵抗":
 													var baseNum = valueArray[0];
 													var powWeight = valueArray[1];
 													calItem.defender += baseNum + powWeight * skillLevel;
 													break;
 												//背水
 												case "プライド":
+												case "志氣":
+												case "驕傲":
 													var powWeight = valueArray[0];
 													var maxNum = valueArray[1];
 													calItem.assaultBase += powWeight * skillLevel;
@@ -858,24 +934,28 @@ $(function(){
 													break;
 												//二连
 												case "ラッシュ":
+												case "突進":
 													var baseNum = valueArray[0];
 													var powWeight = valueArray[1];
 													calItem.rush += baseNum + powWeight * skillLevel;
 													break;
 												//三连
 												case "バレッジ":
+												case "連擊":
 													var baseNum = valueArray[0];
 													var powWeight = valueArray[1];
 													calItem.barrage += baseNum + powWeight * skillLevel;
 													break;
 												//急所
 												case "スティンガー":
+												case "刺殺":
 													var baseNum = valueArray[0];
 													var powWeight = valueArray[1];
 													calItem.stinger += 0.2 * (baseNum + powWeight * skillLevel);
 													break;
 												//爆裂性能
 												case "エクシード":
+												case "突破":
 													var baseNumDamage = valueArray[0];
 													var powWeightDamage = valueArray[1];
 													var baseNumUpperLimit = valueArray[2];
@@ -885,6 +965,7 @@ $(function(){
 													break;
 												//恢复性能
 												case "アセンション":
+												case "躍升":
 													var baseNumVolume = valueArray[0];
 													var powWeightVolume = valueArray[1];
 													var baseNumUpperLimit = valueArray[2];
@@ -894,6 +975,7 @@ $(function(){
 													break;
 												//旺盛
 												case "ヴィゴラス":
+												case "強健":
 													var baseNum = valueArray[0];
 													var powWeight = valueArray[1];
 													calItem.vigorousMax += baseNum+skillLevel*powWeight-Math.pow((baseNum+skillLevel*powWeight), 0.5);
@@ -914,6 +996,19 @@ $(function(){
 													var baseNum = valueArray[2];
 													var powWeight = valueArray[3];
 													calItem.vigorousMax += baseNum+skillLevel*powWeight-Math.pow((baseNum+skillLevel*powWeight), 0.5);
+													break;
+												//攻刃&恢复
+												case "レジリエンス":
+													var baseNum = valueArray[0];
+													var powWeight = valueArray[1];
+													calItem.assaultBase += baseNum + powWeight * skillLevel;
+													calItem.assaultMax += baseNum + powWeight * skillLevel;
+													var baseNumVolume = valueArray[2];
+													var powWeightVolume = valueArray[3];
+													var baseNumUpperLimit = valueArray[4];
+													var powWeightUpperLimit = valueArray[5];
+													calItem.ascensionVolume += baseNumVolume + powWeightVolume * skillLevel;
+													calItem.ascensionUpperLimit += baseNumUpperLimit + powWeightUpperLimit * skillLevel;
 													break;
 												//血刃&恢复
 												case "グレイス":
@@ -1874,7 +1969,7 @@ $(function(){
 					json: {
 						selectable_base_filter: "sellable",
 						page: 1,
-						per_page: 500
+						per_page: 600
 					}
 				}).then(function(e){
 					var data = e.body.data;
@@ -2551,44 +2646,6 @@ $(function(){
 			mainMenuDiv.append(textArea);
 			debugBtn.click(function(){
 				emptyLog();
-				var obj = window.kh;
-				textArea.append(JSON.stringify(window.kh.Api));
-				//mypageLog(window.kh.createInstance(apiAGacha));
-				window.kh.createInstance("apiAGacha").playEventGacha(2102, 2082).then(function(e) {
-				}).fail(playFailHandler);
-				window.console.log("123");
-				//mypageLog(JSON.stringify(window.kh));
-				//mypageLog(window.kh.createInstance("apiAParties"));
-				//console.log(window.kh.createInstance("apiAWeapons"));
-				//console.log(window.kh.createInstance("apiASummons"));
-				//console.log(window.kh.createInstance("apiAParties"));
-				/*window.kh.createInstance("apiAParties").getDeck("selected").then(function(e) {
-					var deck = e.body.deck;
-					console.log(e);
-					if(deck&&deck.length>0){
-						_.each(deck,function(item,i){
-							console.log(item);
-						});
-					}
-				}).fail(playFailHandler);*/
-				/*window.kh.createInstance("apiACharacters").getList("", 1, 200).then(function(e){
-					var data = e.body.data;
-					if(data&&data.length>0){
-						_.each(data,function(item,i){
-							console.log(item);
-						});
-					}
-				}).fail(playFailHandler);*/
-				/*window.kh.createInstance("apiASummons").getSupporters(0).then(function(e){
-					var data = e.body.data;
-					if(data&&data.length>0){
-						_.each(data,function(item,i){
-							console.log(item);
-						});
-					}
-				}).fail(playFailHandler);*/
-				//console.log(window.kh.createInstance("apiAAccessories"));
-				//console.log(window.kh.createInstance("apiShop"));
 			});
 		};
 		
