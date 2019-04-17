@@ -762,6 +762,7 @@ $(function(){
 		function createEquipBtns() {
 			createEnhanceRCupBtn();
 			createEnhanceRCupBonusBtn();
+			createEnhanceRCupByRCupBtn();
 			createEnhanceSRWeaponBtn();
 			createEnhanceSRWeapon2Btn();
 			createEnhanceSRWeapon3Btn();
@@ -1684,6 +1685,53 @@ $(function(){
 					kh.createInstance("apiAWeapons").enhance(actTargetCupArr[0], actWeaponArr).then(function(e) {
 						mypageLog("R圣杯强化lv1->lv4完毕");
 						batchEnhanceRCup(targetCupArr, weaponArr); 
+					}).fail(playFailHandler);
+				}else{
+					//执行完毕
+					mypageLog("执行完毕");
+				}
+			};
+		};
+		
+		//强化R圣杯（R杯喂R杯）
+		function createEnhanceRCupByRCupBtn() {
+			var enhanceRCupByRCupBtn = $("<button type='button' class='btn'>R圣杯强化R圣杯到lv3</button>");
+			secondLevelMenuDiv.append(enhanceRCupByRCupBtn);
+			enhanceRCupByRCupBtn.click(function(){
+				emptyLog();
+				//获取R圣杯和R武器数组
+				mypageLog("开始获取R圣杯信息");
+				var rCupArr = [];
+				_http.get({
+					url: kh.env.urlRoot+ "/a_weapons",
+					json: {
+						//selectable_base_filter: "sellable",
+						page: 1,
+						per_page: 600
+					}
+				}).then(function(e){
+					var data = e.body.data;
+					if(data&&data.length>0){
+						_.each(data,function(item,i){
+							//过滤R圣杯
+							if(item.weapon_id==6000&&item.rare=="R"&&item.level==1&&item.exp==0&&item.skill_level==1&&!item.is_equipped&&!item.is_locked){
+								rCupArr.push(item.a_weapon_id);
+							}
+						});
+					}
+					mypageLog("总计未强化R圣杯数量"+rCupArr.length);
+					batchEnhanceRCup(rCupArr);	//批量强化R圣杯
+				}).fail(playFailHandler);
+			});
+			
+			//批量强化R圣杯
+			function batchEnhanceRCup(targetCupArr) {
+				var actTargetCupArr = targetCupArr.splice(0,1);
+				var actWeaponArr = targetCupArr.splice(0,1);
+				if (actTargetCupArr.length>0 && actWeaponArr.length>0) {
+					kh.createInstance("apiAWeapons").enhance(actTargetCupArr[0], actWeaponArr[0]).then(function(e) {
+						mypageLog("R圣杯强化lv1->lv3完毕");
+						batchEnhanceRCup(targetCupArr); 
 					}).fail(playFailHandler);
 				}else{
 					//执行完毕
