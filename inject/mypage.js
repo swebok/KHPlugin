@@ -788,7 +788,9 @@ $(function(){
 		
 		//创建商店按钮组
 		function createShopBtns() {
-			createWeeklyTreasureExchangeBtn();
+			//createWeeklyTreasureExchangeBtn();
+			createShopTextBox();
+			createRaidBPPosionExchangeBtn();
 		};
 		
 		//创建计算控件组
@@ -2574,6 +2576,67 @@ $(function(){
 					//执行完毕
 					mypageLog("执行完毕");
 				}
+			};
+		};
+		
+		//raid币商店兑换BP药
+		function createRaidBPPosionExchangeBtn() {
+			var raidBPPosionExchangeBtn = $("<button type='button' class='btn'>100raid币兑换50BP药</button>");
+			secondLevelMenuDiv.append(raidBPPosionExchangeBtn);
+			raidBPPosionExchangeBtn.click(function(){
+				var raidMedal = 0;	//raid币数量
+				var count = 0;
+				emptyLog();
+				//根据控件ID获取控件对象
+				var shopInput = document.getElementById("shopInput");
+				//获取想要兑换的数量
+				var amount = parseFloat(shopInput.value);
+				//判断是否为正整数
+				var re = /^[1-9]+[0-9]*]*$/;
+				if (!re.test(amount)) {
+					mypageLog("数量不是正整数！");
+					return;
+				}
+				amount = Math.floor(amount/100) * 100;
+				mypageLog("兑换BP药：" + amount + "个(百位向下取整)");
+				//获取当前raid币
+				_http.get({
+					url: kh.env.urlRoot+ "/shop/11"
+				}).then(function(e) {
+					raidMedal = e.body.catalogs[0].currency.amount;
+					mypageLog("raid币数量：" + raidMedal);
+					if (raidMedal < amount * 2) {
+						//不足提示
+						mypageLog("raid币少于需求，请重新输入数量。");
+					} else {
+						//计算兑换次数
+						count = Math.floor(amount/50);
+						bpExchange(count);
+					}
+				}).fail(playFailHandler);
+			});
+			
+			// 100币换50药
+			function bpExchange(count) {
+				// count达到0时停止
+				if (count <= 0) {
+					return;
+				}
+				_http.post({
+					url: kh.env.urlRoot+ "/shop",
+					json: {
+						amount: 10,
+						product_id: 100007
+					}
+				}).then(function(e) {
+					if (e.body.result == true) {
+						count -= 1;
+						mypageLog("兑换成功，100币换50药，还剩余" + count + "次");
+						bpExchange(count);
+					} else {
+						mypageLog("兑换失败");
+					}
+				}).fail(playFailHandler);
 			};
 		};
 		
