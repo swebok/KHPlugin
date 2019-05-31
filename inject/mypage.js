@@ -2579,6 +2579,12 @@ $(function(){
 			};
 		};
 		
+		//商店物品数量输入框
+		function createShopTextBox() {
+			var shopInput = $("<input type=\"text\" id=\"shopInput\" name=\"shop\" value=\"输入兑换数量\"></input>");
+			secondLevelMenuDiv.append(shopInput);
+		};
+		
 		//raid币商店兑换BP药
 		function createRaidBPPosionExchangeBtn() {
 			var raidBPPosionExchangeBtn = $("<button type='button' class='btn'>100raid币兑换50BP药</button>");
