@@ -9,6 +9,7 @@ $(function(){
 		var _http = window.kh.createInstance("HttpConnection");
 		
 		$("#Cocos2dGameContainer").css("float","left");
+		$("#Cocos2dGameContainer").css("padding", "0px");
 		var con = $("<div style='width:240px;float:left;margin-left: 5px;margin-top: 5px;'></div>");
 		$("body").append(con);
 		
@@ -2767,13 +2768,14 @@ $(function(){
 		};
 		
 		function initLogDivContent() {
-			heightArr = [142, 244, 199, 284, 143, 107, 132, 276, 114, 133, 262, 218, 349,240,243,135,268,248,268];
+			mypageLog("19/06/21临时更新：暂时使主界面的脚本有效了。不要在战斗中点插件！");
+			/*heightArr = [142, 244, 199, 284, 143, 107, 132, 276, 114, 133, 262, 218, 349,240,243,135,268,248,268];
 			extArr = ["jpg","jpg","jpg","jpg","jpg","gif","jpg","jpg","jpg","jpg","jpg","jpg","jpg","gif","jpg","jpg","jpg","jpg","jpg"]
 			var index = 1 + Math.floor(19*Math.random());
 			var settings = JSON.parse($("#hiddenDiv").text());
 			var extensionId = settings.extensionId;
 			var img = $("<img src='chrome-extension://" + extensionId + "/img/img" + index + "." + extArr[index-1] + "' width='240' height='" + heightArr[index-1] + "'/>");
-			logDiv.append(img);
+			logDiv.append(img);*/
 		}
 		
 		

@@ -104,11 +104,19 @@ if(window.location.toString().indexOf("http://www.dmm.co.jp/netgame/social/-/gad
 
 		chrome.runtime.sendMessage({type: "getSettings"}, function (settings) {
 	    	hiddenDiv.text(JSON.stringify(settings));
-	    	if(window.location.toString().indexOf("/battle")>-1){
-				injectCode("inject/battle.js");
-			}else if(window.location.toString().indexOf("/mypage_quest_party_guild_enh_evo_gacha_present_shop_epi")>-1){
+	    	if(window.location.toString().indexOf("!battle")>-1){
+			//	injectCode("inject/battle.js");
+			}else if(window.location.toString().indexOf("!mypage")>-1
+			||window.location.toString().indexOf("!quest")>-1
+			||window.location.toString().indexOf("!party")>-1
+			||window.location.toString().indexOf("!guild")>-1
+			||window.location.toString().indexOf("!enh")>-1
+			||window.location.toString().indexOf("!evo")>-1
+			||window.location.toString().indexOf("!gacha")>-1
+			||window.location.toString().indexOf("!present")>-1
+			||window.location.toString().indexOf("!shop")>-1
+			||window.location.toString().indexOf("!epi")>-1){
 				injectCode("inject/mypage.js");
-				
 			}
 	    });
 	});
