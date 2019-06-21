@@ -1592,7 +1592,7 @@ $(function(){
 		
 		//强化R圣杯
 		function createEnhanceRCupBtn() {
-			var enhanceRCupBtn = $("<button type='button' class='btn'>强化R圣杯到lv4</button>");
+			var enhanceRCupBtn = $("<button type='button' class='btn'>强化R圣杯到lv3</button>");
 			secondLevelMenuDiv.append(enhanceRCupBtn);
 			enhanceRCupBtn.click(function(){
 				emptyLog();
@@ -1630,10 +1630,10 @@ $(function(){
 			//批量强化R圣杯
 			function batchEnhanceRCup(targetCupArr, weaponArr) {
 				var actTargetCupArr = targetCupArr.splice(0,1);
-				var actWeaponArr = weaponArr.splice(0,3);
-				if (actTargetCupArr.length>0 && actWeaponArr.length==3) {
+				var actWeaponArr = weaponArr.splice(0,2);
+				if (actTargetCupArr.length>0 && actWeaponArr.length==2) {
 					kh.createInstance("apiAWeapons").enhance(actTargetCupArr[0], actWeaponArr).then(function(e) {
-						mypageLog("R圣杯强化lv1->lv4完毕");
+						mypageLog("R圣杯强化lv1->lv3完毕");
 						batchEnhanceRCup(targetCupArr, weaponArr); 
 					}).fail(playFailHandler);
 				}else{
@@ -1795,6 +1795,59 @@ $(function(){
 				}
 			};
 		};
+
+		//强化SR武器到4（使用Lv3R杯）
+		function createEnhanceSRWeaponBylv3RCupBtn() {
+			var enhanceSRWeaponBylv3RCupBtn = $("<button type='button' class='btn'>lv3R杯强化SR武器到lv4</button>");
+			secondLevelMenuDiv.append(enhanceSRWeaponBylv3RCupBtn);
+			enhanceSRWeaponBylv3RCupBtn.click(function(){
+				emptyLog();
+				//获取SR武器和R杯数组
+				mypageLog("开始获取SR武器和Lv3R杯信息");
+				var srWeaponArr = [];
+				var rCupArr = [];
+				_http.get({
+					url: kh.env.urlRoot+ "/a_weapons",
+					json: {
+						//selectable_base_filter: "sellable",
+						page: 1,
+						per_page: 600
+					}
+				}).then(function(e){
+					var data = e.body.data;
+					if(data&&data.length>0){
+						_.each(data,function(item,i){
+							//过滤SR武器（SR圣杯基础攻击150）
+							if(item.rare=="SR"&&item.level==1&&item.exp==0&&item.skill_level==1&&item.attack>160&&!item.is_equipped&&!item.is_locked){
+								srWeaponArr.push(item.a_weapon_id);
+							}
+							//过滤Lv3R杯
+							if(item.weapon_id==6000&&item.rare=="R"&&item.skill_level==3&&!item.is_equipped&&!item.is_locked) {
+								rCupArr.push(item.a_weapon_id);
+							}
+						});
+					}
+					mypageLog("总计未强化SR武器数量"+srWeaponArr.length);
+					mypageLog("总计lv3R杯数量"+rCupArr.length);
+					batchEnhanceSRWeaponByLv3Cup(srWeaponArr, rCupArr);	//批量强化SR武器
+				}).fail(playFailHandler);
+			});
+			
+			//批量强化SR武器
+			function batchEnhanceSRWeaponByLv3Cup(targetWeaponArr, weaponArr) {
+				var actTargetWeaponArr = targetWeaponArr.splice(0,1);
+				var actWeaponArr = weaponArr.splice(0,1);
+				if (actTargetWeaponArr.length>0 && actWeaponArr.length>0) {
+					kh.createInstance("apiAWeapons").enhance(actTargetWeaponArr[0], actWeaponArr[0]).then(function(e) {
+						mypageLog("SR武器强化lv1->lv4完毕");
+						batchEnhanceSRWeaponByLv3Cup(targetWeaponArr, weaponArr);
+					}).fail(playFailHandler);
+				}else{
+					//执行完毕
+					mypageLog("执行完毕");
+				}
+			};
+		};
 		
 		//强化SR武器到2
 		function createEnhanceSRWeapon2Btn() {
@@ -1891,7 +1944,7 @@ $(function(){
 				var actTargetWeaponArr = targetWeaponArr.splice(0,1);
 				var actWeaponArr = weaponArr.splice(0,3);
 				if (actTargetWeaponArr.length>0 && actWeaponArr.length==3) {
-					kh.createInstance("apiAWeapons").enhance(actTargetWeaponArr[0], actWeaponArr[0]).then(function(e) {
+					kh.createInstance("apiAWeapons").enhance(actTargetWeaponArr[0], actWeaponArr).then(function(e) {
 						mypageLog("SR武器强化lv1->lv3完毕");
 						batchEnhanceSRWeapon3(targetWeaponArr, weaponArr);
 					}).fail(playFailHandler);
