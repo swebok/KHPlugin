@@ -104,9 +104,10 @@ if(window.location.toString().indexOf("http://www.dmm.co.jp/netgame/social/-/gad
 
 		chrome.runtime.sendMessage({type: "getSettings"}, function (settings) {
 	    	hiddenDiv.text(JSON.stringify(settings));
-	    	if(window.location.toString().indexOf("!battle")>-1){
-			//	injectCode("inject/battle.js");
-			}else if(window.location.toString().indexOf("!mypage")>-1
+	    	if(window.location.toString().indexOf("/battle")>-1){
+				injectCode("inject/battle.js");
+			}else if(window.location.toString().indexOf("/mypage_quest_party_guild_enh_evo_gacha_present_shop_epi")>-1
+			||window.location.toString().indexOf("!mypage")>-1
 			||window.location.toString().indexOf("!quest")>-1
 			||window.location.toString().indexOf("!party")>-1
 			||window.location.toString().indexOf("!guild")>-1
