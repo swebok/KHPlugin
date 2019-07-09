@@ -2769,8 +2769,8 @@ $(function(){
 		function showInfo() {
 			emptyLog();
 			mypageLog("修改：swebok");
-			mypageLog("更新日期：2019/4/3");
-			mypageLog("暗号：535942143，想入工会的进");
+			mypageLog("更新日期：2019/7/9");
+			mypageLog("暗号：535942143，想入工会的进，要求活人肯肝非签到");
 		};
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2821,7 +2821,7 @@ $(function(){
 		};
 		
 		function initLogDivContent() {
-			mypageLog("19/06/21临时更新：暂时使主界面的脚本有效了。不要在战斗中点插件！");
+			mypageLog("19/07/09临时更新：增加了手动横向扩展收缩画面区域的按钮");
 			/*heightArr = [142, 244, 199, 284, 143, 107, 132, 276, 114, 133, 262, 218, 349,240,243,135,268,248,268];
 			extArr = ["jpg","jpg","jpg","jpg","jpg","gif","jpg","jpg","jpg","jpg","jpg","jpg","jpg","gif","jpg","jpg","jpg","jpg","jpg"]
 			var index = 1 + Math.floor(19*Math.random());

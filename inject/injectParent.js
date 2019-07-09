@@ -16,6 +16,10 @@ $(function(){
 				// $("div.wrapper.center-block").remove();
 				$("div.banner_middle").remove();
 				
+				//$('#game').height(800);
+				//$('#game').width(1300);
+				//$('#game-outer').height(800);
+				//$('#game-outer').width(1300);
 				// $("#game").height(420);
 				// $('#game-outer').height(440);
 				// $('#game-outer').width("auto");
@@ -38,6 +42,25 @@ $(function(){
 					$("#game").height(heightStr);
 					$('#game-outer').height(parseInt(heightStr)+20);
 				}
+				//$('#game-outer').height(660);
+				//$('#game-outer').width(1300);
+				//$('#game').height(640);
+				//$('#game').width(1300);
+				//$('#Cocos2dGameContainer').width(960);
+				//$('#gameCanvas').width(960);
+				
+				var btn = $("<button type='button' class='btn btn-default' style='position: absolute;top: 10px;left: 580px;'>扩展区域</button>")
+				btn.click(function(){
+					$('#game').width(1280);
+				});
+				$(".test-screen.center-block").append(btn);
+				
+				var btn = $("<button type='button' class='btn btn-default' style='position: absolute;top: 10px;left: 680px;'>还原区域</button>")
+				btn.click(function(){
+					$('#game').width(960);
+				});
+				$(".test-screen.center-block").append(btn);
+				
 				var btn = $("<button type='button' class='btn btn-default' style='position: absolute;top: 10px;left: 780px;'>正常版</button>")
 				btn.click(function(){
 					$("#game").height(640);
